@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sign-in complete · Eight Minutes Ago</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header><div class="ring" aria-hidden="true"></div><div class="brand">Eight Minutes Ago</div></header>
+  <h1 id="title">Sign-in complete</h1>
+  <p id="msg">Copy the code below and paste it into the publishing tool on your computer.</p>
+  <p><span class="code" id="code"></span></p>
+  <p class="muted">This page only displays the code from the address bar. Nothing is stored or sent anywhere.</p>
+</div>
+<script>
+  const q = new URLSearchParams(location.search);
+  const code = q.get("code"), err = q.get("error") || q.get("error_description");
+  if (code) { document.getElementById("code").textContent = code; }
+  else {
+    document.getElementById("title").textContent = "Sign-in not completed";
+    document.getElementById("msg").textContent = err ? "The platform returned: " + err : "No sign-in code was found on this page.";
+  }
+</script>
+</body>
+</html>
